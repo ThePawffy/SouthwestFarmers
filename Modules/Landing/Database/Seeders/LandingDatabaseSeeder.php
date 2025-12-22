@@ -1,0 +1,23 @@
+<?php
+
+namespace Modules\Landing\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class LandingDatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $this->call([
+            OptionTableSeeder::class,
+            FeatureSeeder::class,
+            InterfaceSeeder::class,
+            TestimonialSeeder::class,
+            BlogSeeder::class,
+            MessageSeeder::class
+        ]);
+    }
+}

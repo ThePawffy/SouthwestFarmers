@@ -1,0 +1,74 @@
+<?php
+
+namespace Modules\BusinessAddon\App\Http\Controllers;
+
+use App\Models\Vat;
+use App\Models\Sale;
+use App\Models\Purchase;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use Modules\BusinessAddon\App\Exports\ExportVatReport;
+
+class AcnooVatReportController extends Controller
+{
+    public function index()
+    {
+        $businessId = auth()->user()->business_id;
+
+        $sales = Sale::with('user:id,name', 'party:id,name,email,phone,type', 'business:id,companyName', 'payment_type:id,name')
+            ->where('business_id', $businessId)
+            ->where('vat_amount', '>', 0)
+            ->latest()
+            ->paginate(20);
+
+        $purchases = Purchase::with('details', 'party', 'details.product', 'details.product.category', 'payment_type:id,name')
+            ->where('business_id', $businessId)
+            ->where('vat_amount', '>', 0)
+            ->latest()
+            ->paginate(20);
+
+        $vats = Vat::where('business_id', auth()->user()->business_id)->whereStatus(1)->get();
+
+        return view('businessAddon::reports.vats.index', compact('sales', 'purchases', 'vats'));
+    }
+
+    public function exportExcel($type = 'all')
+    {
+        return $this->exportFile($type, 'vat-report.xlsx');
+    }
+
+    public function exportCsv($type = 'all')
+    {
+        return $this->exportFile($type, 'vat-report.csv');
+    }
+
+    private function exportFile($type, $filename, $format = null)
+    {
+        $businessId = auth()->user()->business_id;
+
+        $sales = collect();
+        $purchases = collect();
+
+        if ($type === 'sales' || $type === 'all') {
+            $sales = Sale::with('user:id,name', 'party:id,name,email,phone,type', 'payment_type:id,name')
+                ->where('business_id', $businessId)
+                ->where('vat_amount', '>', 0)
+                ->latest()
+                ->get();
+        }
+
+        if ($type === 'purchases' || $type === 'all') {
+            $purchases = Purchase::with('details', 'party', 'details.product', 'details.product.category', 'payment_type:id,name')
+                ->where('business_id', $businessId)
+                ->where('vat_amount', '>', 0)
+                ->latest()
+                ->get();
+        }
+
+        $vats = Vat::where('business_id', $businessId)->get();
+
+        $export = new ExportVatReport($sales, $purchases, $vats);
+
+        return Excel::download($export, $filename, $format);
+    }
+}

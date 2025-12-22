@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/businessAddon",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\BusinessAddon\\": "",
+            "Modules\\BusinessAddon\\App\\": "app/",
+            "Modules\\BusinessAddon\\Database\\Factories\\": "database/factories/",
+            "Modules\\BusinessAddon\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\BusinessAddon\\Tests\\": "tests/"
+        }
+    }
+}
