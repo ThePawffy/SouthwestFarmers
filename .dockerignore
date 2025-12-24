@@ -1,7 +1,14 @@
 .git
+.gitignore
+.env
+.env.*
 node_modules
 vendor
-.env
-storage/logs
-apache2/
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
 *.conf
+apache2
+httpd
+.DS_Store
