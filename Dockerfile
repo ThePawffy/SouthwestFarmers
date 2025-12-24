@@ -30,4 +30,5 @@ COPY nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 8080
 
-CMD php-fpm -D && nginx -g 'daemon off;'
+CMD sh -c "envsubst '\$PORT' < /etc/nginx/sites-available/default > /etc/nginx/sites-enabled/default && php-fpm -D && nginx -g 'daemon off;'"
+
