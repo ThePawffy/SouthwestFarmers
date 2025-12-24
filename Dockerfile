@@ -1,9 +1,8 @@
 FROM php:8.2-fpm
 
-# Install system dependencies (ADD gettext-base)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     nginx \
-    gettext-base \
     git unzip \
     libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -17,7 +16,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Copy composer files first
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --optimize-autoloader --no-scripts
+RUN composer install --no-dev --optimize-autoloader
 
 # Copy application
 COPY . .
@@ -26,10 +25,9 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html \
  && chmod -R 775 storage bootstrap/cache
 
-# Nginx config template
-COPY nginx.conf /etc/nginx/templates/default.conf.template
+# Copy nginx config
+COPY nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 8080
 
-# Render nginx config + start services
-CMD sh -c "envsubst '\$PORT' < /etc/nginx/templates/default.conf.template > /etc/nginx/sites-enabled/default && php-fpm -D && nginx -g 'daemon off;'"
+CMD php-fpm -D && nginx -g 'daemon off;'
