@@ -7,28 +7,30 @@
 @section('main_content')
     <section class="home-banner-section">
         <div class="container">
-            <div class="row align-items-center ">
+            <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="banner-content">
-                        <h1 data-aos="fade-right">
+                        <h1 data-aos="fade-right" class="hero-main-title">
                             {{ str_word_count($page_data['headings']['slider_title'] ?? '') > 6
                                 ? implode(' ', array_slice(explode(' ', $page_data['headings']['slider_title'] ?? ''), 0, 6)) . '...'
-                                : $page_data['headings']['slider_title'] ?? '' }}
+                                : $page_data['headings']['slider_title'] ?? 'Welcome to Southwest Farmer Market' }}
 
-                            <span
+                            <span class="typing-text"
                                 data-typer-targets='{"targets": [
-                                @foreach ($page_data['headings']['silder_shop_text'] ?? [] as $key => $shop)
-                                    "{{ str_word_count($shop) > 5 ? implode(' ', array_slice(explode(' ', $shop), 0, 5)) . '...' : $shop }}"@if (!$loop->last),@endif @endforeach
+                                @foreach ($page_data['headings']['silder_shop_text'] ?? ['Fresh Produce', 'Quality Products', 'Budget Friendly'] as $key => $shop)
+                                    "{{ str_word_count($shop) > 5 ? implode(' ', array_slice(explode(' ', $shop), 0, 5)) . '...' : $shop }}"@if (!$loop->last),@endif 
+                                @endforeach
                             ]}'>
                             </span>
                         </h1>
 
-                        <p data-aos="fade-right" data-aos-delay="300" >
-                            {{ Str::words($page_data['headings']['slider_description'] ?? '', 20, '...') }}
+                        <p data-aos="fade-right" data-aos-delay="300" class="hero-description">
+                            Welcome to the #1 African Grocery Chain Store in the States! We are pleased to offer our customers the convenience of both delivery and pickup options. Our delivery service is fast, reliable, and available for customers throughout the United States. If you prefer to pick up your order, we have convenient pickup locations available for you.
                         </p>
-                        <div data-aos="fade-right" data-aos-delay="600" class="demo-btn-group mb-3">
-                            <a class="custom-btn custom-primary-btn" href="#plans">
-                                {{ Str::words($page_data['headings']['slider_btn1'] ?? '', 4, '...') }}
+
+                        <!-- <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
+                            <a class="custom-btn custom-secondary-btn" href="#plans">
+                                Explore Our Products
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -36,327 +38,283 @@
                                         fill="white" />
                                 </svg>
                             </a>
-
-                            {{-- <a href="" class="mt-1 video-button d-flex align-items-center gap-2"
-                                data-bs-toggle="modal" data-bs-target="#watch-video-modal">
-                                <span class="play-button d-flex align-items-center justify-content-center">
-                                </span>
-                                <span
-                                    class="watch-text ms-2">{{ Str::words($page_data['headings']['slider_btn2'] ?? '', 3, '...') }}
-                                </span>
-                            </a> --}}
-                            <a href="#" class="d-flex align-items-center justify-content-center"
-                                data-bs-toggle="modal" data-bs-target="#watch-video-modal">
-                                <div id="play-video" class="video-play-button ">
-                                    <p></p>
-                                </div>
-                                <span
-                                    class="watch-text ">{{ Str::words($page_data['headings']['slider_btn2'] ?? '', 3, '...') }}
-                                </span>
-                            </a>
-                            {{-- <div class="position-relative">
-                                <span class="heartbeat"></span>
-                                <span class="heartbeat"></span>
-                                <span class="dot"></span>
-                            </div> --}}
-
-                        </div>
-
-                        <div data-aos="fade-right" data-aos-delay="900" class="banner-scan">
-                            <img class="scan-img"
-                                src="{{ asset($page_data['scanner_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                                alt="" />
-                            <p class="scan-text">
-                                {{ Str::words($page_data['headings']['slider_scanner_text'] ?? '', 9, '...') }}
-                            </p>
-                        </div>
-
-                        <div data-aos="fade-right" data-aos-delay="1200"  class="d-flex align-items-center flex-wrap gap-2 mt-3 download-option">
-                            <div class="">
-                                <a href="{{ $page_data['headings']['apple_app_image'] ?? '' }}" target="_blank">
-                                    <img src="{{ asset($page_data['apple_app_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                                        alt="image" />
-                                </a>
-                                <a href="{{ $page_data['headings']['footer_google_play_app_link'] ?? '' }}"
-                                    target="_blank"></a>
-                            </div>
-
-                            <div>
-                                <a href="{{ $page_data['headings']['google_play_image'] ?? '' }}" target="_blank">
-                                    <img src="{{ asset($page_data['google_play_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                                        alt="image" />
-                                </a>
-                                <a href="{{ $page_data['headings']['footer_google_play_app_link'] ?? '' }}"
-                                    target="_blank"></a>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
+                
                 <div class="col-lg-6 position-relative">
-                    <div data-aos="fade-left" class="banner-img  text-center">
+                    <div data-aos="fade-left" class="banner-img text-center">
                         <img src="{{ asset($page_data['slider_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                            alt="banner-img" class="w-75 move-image" />
-
+                            alt="Southwest Farmer Market" class="hero-image move-image" />
                     </div>
-                    <img data-aos="fade-left" class="element1 move-image" src="{{ 'assets/images/icons/elements1.svg' }}" alt=""
-                        srcset="">
-                    <img data-aos="fade-left" class="element2 move-image" src="{{ 'assets/images/icons/elements2.svg' }}" alt=""
-                        srcset="">
+                    <img data-aos="fade-left" class="element1 move-image floating-element" 
+                        src="{{ asset('assets/images/icons/elements1.svg') }}" alt="" />
+                    <img data-aos="fade-left" class="element2 move-image floating-element" 
+                        src="{{ asset('assets/images/icons/elements2.svg') }}" alt="" />
                 </div>
             </div>
-            {{-- hero start code start --}}
 
-            <div class="stat-container">
-                <div class="stat-content p-3">
-                    @foreach ($page_data['headings']['content_type_short_texts'] ?? [] as $key => $content_type_short_texts)
-                        <div data-aos="fade-up" data-aos-delay="{{ $key * 300 }}" class="d-flex align-items-center gap-2 single-item">
-                            <img src="{{ asset($page_data['content_type_icons'][$key] ?? 'assets/img/demo-img.png') }}"
-                                id="image" class="">
-                            <div class="">
+            {{-- Stats Section --}}
+            <!-- <div class="stat-container" data-aos="fade-up" data-aos-delay="900">
+                <div class="stat-content">
+                    @foreach ($page_data['headings']['content_type_short_texts'] ?? ['1000+', '500+', '50+', '24/7'] as $key => $content_type_short_texts)
+                        <div data-aos="fade-up" data-aos-delay="{{ ($key + 3) * 200 }}" class="stat-item">
+                            <div class="stat-icon-wrapper">
+                                <img src="{{ asset($page_data['content_type_icons'][$key] ?? 'assets/img/demo-img.png') }}"
+                                    alt="icon" class="stat-icon">
+                            </div>
+                            <div class="stat-details">
                                 @if (strpos($content_type_short_texts, '/') !== false)
                                     @php
-                                        $numbers = explode('/', $content_type_short_texts); // Split "24/7" into ["24", "7"]
+                                        $numbers = explode('/', $content_type_short_texts);
                                     @endphp
-                                    <h2>
+                                    <h2 class="stat-number">
                                         <span class="counter" data-target="{{ $numbers[0] }}">0</span> /
                                         <span class="counter" data-target="{{ $numbers[1] }}">0</span>
                                     </h2>
                                 @elseif (strpos($content_type_short_texts, '+') !== false)
                                     @php
-                                        $number = preg_replace('/[^0-9.]/', '', $content_type_short_texts); // Extract the number
+                                        $number = preg_replace('/[^0-9.]/', '', $content_type_short_texts);
                                     @endphp
-                                    <h2>
+                                    <h2 class="stat-number">
                                         <span class="counter" data-target="{{ $number }}">0</span>+
                                     </h2>
                                 @else
-                                    <h2 class="counter"
+                                    <h2 class="stat-number counter"
                                         data-target="{{ preg_replace('/[^0-9.]/', '', $content_type_short_texts) }}">0</h2>
                                 @endif
-                                <p>{{ Str::words($page_data['headings']['content_type_titles'][$key] ?? '', 3, '...') }}
+                                <p class="stat-label">
+                                    {{ Str::words($page_data['headings']['content_type_titles'][$key] ?? 'Label', 3, '...') }}
                                 </p>
                             </div>
                         </div>
                     @endforeach
                 </div>
-            </div>
-
-            {{-- hero start code end --}}
+            </div> -->
         </div>
     </section>
 
-    <div class="modal modal-custom-design" id="watch-video-modal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <iframe width="100%" height="400px" src="{{ $page_data['headings']['slider_btn2_link'] ?? '' }}"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+    <style>
+        .home-banner-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-    {{-- Feature Code Start --}}
+        .home-banner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
 
-    @include('landing::web.components.feature')
+        .hero-main-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
 
-    {{-- Interface Code Start --}}
+        .typing-text {
+            display: block;
+            color: #4CAF50;
+            font-size: 3rem;
+            margin-top: 0.5rem;
+        }
 
-    <section class="slick-slider-section section-gradient-bg">
-        <div class="container">
-            <div data-aos="fade-up" class="section-title text-center ">
-                <p class="langing-section-subtitle ">
-                    {{ Str::words($page_data['headings']['interface_short_text'] ?? '', 5, '...') }}
-                </p>
-                <h2 class="langing-section-title ">
-                    {{ Str::words($page_data['headings']['interface_title'] ?? '', 15, '...') }}
-                </h2>
-                <p class="max-w-600 mx-auto section-description ">
-                    {{ Str::words($page_data['headings']['interface_description'] ?? '', 20, '...') }}
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
 
-                </p>
-            </div>
-            <div class="row app-slide">
-                @foreach ($interfaces as $interface)
-                    <div class="image d-flex align-items-center justify-content-center p-2">
-                        <img src="{{ asset($interface->image) }}" alt="phone" />
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+        .cta-buttons-wrapper {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-    {{-- Pricing-Plan-section demo Code Start --}}
-    @include('landing::web.components.plan')
+        .custom-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 16px 32px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
 
-    {{-- Watch demo Code Start --}}
-    <section class="watch-demo-section watch-demo-two section-gradient-bg">
-        <div class="container watch-video-container">
+        .custom-secondary-btn {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            border: none;
+        }
 
-            <div data-aos="fade-right" class="video-wrapper position-relative">
-                <img src="{{ asset($page_data['watch_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                    alt="watch" />
-                {{-- <a class="play-btn" data-bs-toggle="modal" data-bs-target="#play-video-modal"></a> --}}
-                <a class="watch-video play-btn" data-bs-toggle="modal" data-bs-target="#play-video-modal">
-                    <p></p>
-                </a>
-            </div>
-            <div class="watch-video-content">
-                <p data-aos="fade-left" class="langing-section-subtitle ">
-                    {{ Str::words($page_data['headings']['watch_title'] ?? '', 5, '...') }}
-                </p>
+        .custom-secondary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
 
-                <h3 data-aos="fade-left" data-aos-delay="300" class="langing-section-title watch-video-title">
-                    {{ Str::words($page_data['headings']['watch_long_title'] ?? '', 15, '...') }}
-                </h3>
+        .hero-image {
+            max-width: 85%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
 
-                <p data-aos="fade-left" data-aos-delay="600" class="section-description">
-                    {{ Str::words($page_data['headings']['watch_description'] ?? '', 20, '...') }}
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
 
-                </p>
-                <div data-aos="fade-left" data-aos-delay="900" class="mt-3">
-                    <a class="download-btn"
-                        href="{{ $page_data['headings']['download_watch_btn_link'] ?? '' }}">{{ Str::words($page_data['headings']['download_watch_btn_text'] ?? '', 4, '...') }}
+        .element1 {
+            top: 10%;
+            right: 10%;
+            width: 80px;
+        }
 
-                        <svg width="20" height="20" viewBox="0 0 24 25" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M17.4776 9.51106C17.485 9.51102 17.4925 9.51101 17.5 9.51101C19.9853 9.51101 22 11.5294 22 14.0193C22 16.3398 20.25 18.2508 18 18.5M17.4776 9.51106C17.4924 9.34606 17.5 9.17896 17.5 9.01009C17.5 5.96695 15.0376 3.5 12 3.5C9.12324 3.5 6.76233 5.71267 6.52042 8.53192M17.4776 9.51106C17.3753 10.6476 16.9286 11.6846 16.2428 12.5165M6.52042 8.53192C3.98398 8.77373 2 10.9139 2 13.5183C2 15.9417 3.71776 17.9632 6 18.4273M6.52042 8.53192C6.67826 8.51687 6.83823 8.50917 7 8.50917C8.12582 8.50917 9.16474 8.88194 10.0005 9.51101"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                            <path
-                                d="M12 21.5V13.5M12 21.5C11.2998 21.5 9.99153 19.5057 9.5 19M12 21.5C12.7002 21.5 14.0085 19.5057 14.5 19"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
+        .element2 {
+            bottom: 15%;
+            right: 5%;
+            width: 60px;
+            animation-delay: 1s;
+        }
 
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
 
-    <div class="modal modal-custom-design" id="play-video-modal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-0 pb-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <iframe width="100%" height="400px" src="{{ $page_data['headings']['watch_btn_link'] ?? '' }}"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
+        .move-image {
+            animation: moveImage 8s ease-in-out infinite;
+        }
 
-    {{-- User-panel-section demo Code Start --}}
-    <section class="payment-method-container">
-        <div class="container">
-            <div class="">
-                <div data-aos="fade-up" class="section-title text-center">
-                    <p class="payment-subtitle">
-                        {{ Str::words($page_data['headings']['payment_short_title'] ?? '', 5, '...') }}
-                    </p>
-                    <h4 class="payment-title">
-                        {{ Str::words($page_data['headings']['payment_title'] ?? '', 15, '...') }}
+        @keyframes moveImage {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-15px) scale(1.02);
+            }
+        }
 
-                    </h4>
-                </div>
-                <div class="payment-img">
-                    <img src="{{ asset($page_data['payment_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                        alt="">
-                </div>
-            </div>
-        </div>
-    </section>
+        .stat-container {
+            margin-top: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
 
+        .stat-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
 
-    <section class="container">
-        <div class="row align-items-center justify-content-center">
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
 
-            <div class="col-lg-6 invoice-left-content">
-                <h3 data-aos="fade-right" class="langing-section-title pb-4">
-                    {{ Str::words($page_data['headings']['printer_title'] ?? '', 15, '...') }}
-                </h3>
-                <p data-aos="fade-right" data-aos-delay="300" class="section-description pt-0">
-                    {{ Str::words($page_data['headings']['printer_desc'] ?? '', 40, '...') }}
-                </p>
-            </div>
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
 
-            <div class="col-lg-6">
-                <div data-aos="fade-left" class="banner-img invoice-img text-center">
-                    <img src="{{ asset($page_data['printer_image'] ?? 'assets/images/icons/img-upload.png') }}"
-                        alt="banner-img" class="" />
-                </div>
-            </div>
-        </div>
-    </section>
+        .stat-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            border-radius: 50%;
+            padding: 12px;
+        }
 
+        .stat-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
 
-    {{-- Testimonial Section Start --}}
-    <section class="customer-section section-gradient-bg">
-        <div class="container mb-4">
-            <div data-aos="fade-up" class="section-title text-center">
-                <p class="section-description pt-0 langing-section-subtitle pb-0">{{ Str::words($page_data['headings']['testimonial_short_title'] ?? '', 15, '...') }}</p>
-                <h2 class="langing-section-title">
-                    {{ Str::words($page_data['headings']['testimonial_title'] ?? '', 15, '...') }}
-                </h2>
-            </div>
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1;
+        }
 
-            <div class="customer-slider-section">
-                <div class="row ">
-                    @foreach ($testimonials as $testimonial)
-                        <div class="customer-card ">
-                            <img src="{{ asset($testimonial->client_image) }}" alt="" />
-                            <p>
-                                {{ Str::words($testimonial->text ?? '', 20, '...') }}
-                            </p>
-                            <div class="d-flex align-items-center justify-content-center flex-column">
-                                <h5 class="m-0"> {{ Str::limit($testimonial->client_name ?? '', 20, '') }}</h5>
-                                <small> {{ Str::limit($testimonial->work_at ?? '', 30, '') }}</small>
-                                <p class="customer-star">
-                                    @for ($i = 0; $i < $testimonial->star; $i++)
-                                        ★
-                                    @endfor
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </section>
+        .stat-label {
+            font-size: 0.875rem;
+            color: #666;
+            margin: 0.5rem 0 0 0;
+            font-weight: 500;
+        }
 
+        @media (max-width: 992px) {
+            .hero-main-title {
+                font-size: 2.5rem;
+            }
 
-    {{-- Blogs Section Code Start --}}
+            .typing-text {
+                font-size: 2rem;
+            }
 
-    <section class="blogs-section">
-        <div class="container">
-            <div data-aos="fade-up" class="section-title  d-flex align-items-center justify-content-between gap-3 flex-wrap">
-                <h2 class="langing-section-title blog-section-title">
-                    {{ Str::words($page_data['headings']['blog_title'] ?? '', 15, '...') }}
-                </h2>
-                <a href="{{ url($page_data['headings']['blog_view_all_btn_link'] ?? '') }}"
-                    class="custom-btn custom-outline-btn bg-white">
-                    {{ Str::words($page_data['headings']['blog_view_all_btn_text'] ?? '', 3, '...') }}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 1.25C6.072 1.25 1.25 6.072 1.25 12C1.25 17.928 6.072 22.75 12 22.75C17.928 22.75 22.75 17.928 22.75 12C22.75 6.072 17.928 1.25 12 1.25ZM12 21.25C6.899 21.25 2.75 17.101 2.75 12C2.75 6.899 6.899 2.75 12 2.75C17.101 2.75 21.25 6.899 21.25 12C21.25 17.101 17.101 21.25 12 21.25ZM16.6919 12.2871C16.6539 12.3791 16.599 12.462 16.53 12.531L13.53 15.531C13.384 15.677 13.192 15.751 13 15.751C12.808 15.751 12.616 15.678 12.47 15.531C12.177 15.238 12.177 14.763 12.47 14.47L14.1899 12.75H8C7.586 12.75 7.25 12.414 7.25 12C7.25 11.586 7.586 11.25 8 11.25H14.189L12.469 9.53003C12.176 9.23703 12.176 8.76199 12.469 8.46899C12.762 8.17599 13.237 8.17599 13.53 8.46899L16.53 11.469C16.599 11.538 16.6539 11.6209 16.6919 11.7129C16.7679 11.8969 16.7679 12.1031 16.6919 12.2871Z"
-                            fill="#019934" />
-                    </svg>
+            .stat-content {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+        }
 
-                </a>
-            </div>
-        </div>
-    @include('landing::web.components.blog')
-    </section>
-    @include('landing::web.components.signup')
+        @media (max-width: 768px) {
+            .home-banner-section {
+                padding: 60px 0;
+            }
+
+            .hero-main-title {
+                font-size: 2rem;
+            }
+
+            .typing-text {
+                font-size: 1.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .stat-container {
+                padding: 20px;
+            }
+
+            .stat-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 @endsection
