@@ -7,25 +7,22 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo pdo_mysql zip gd bcmath
 
+# Laravel root
 WORKDIR /var/www/html
 
-# Copy entire repo
 COPY . .
 
-# Install Composer
+# Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-WORKDIR /var/www/html/SUPER-ADMIN
-
 RUN composer install --no-dev --optimize-autoloader
 
-# 👉 IMPORTANT PART
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/SUPER-ADMIN/public
+# 👇 THIS is the critical line
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
  && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-RUN chown -R www-data:www-data /var/www/html/SUPER-ADMIN \
- && chmod -R 755 /var/www/html/SUPER-ADMIN
+RUN chown -R www-data:www-data /var/www/html \
+ && chmod -R 755 /var/www/html
 
 CMD ["apache2-foreground"]
