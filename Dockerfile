@@ -1,12 +1,8 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
-# Configure MPM before anything else
-RUN a2dismod mpm_prefork mpm_worker 2>/dev/null || true \
- && a2enmod mpm_event rewrite
-
-# Install system dependencies
+# Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
-    git unzip libzip-dev libpng-dev libjpeg-dev libfreetype6-dev \
+    git unzip libzip-dev libpng-dev libjpeg-dev libfreetype6-dev nginx \
  && docker-php-ext-configure gd --with-freetype --with-jpeg \
  && docker-php-ext-install pdo pdo_mysql zip gd bcmath \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -19,25 +15,37 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 # Copy composer files
 COPY composer.json composer.lock ./
 
-# Install PHP dependencies (this will create vendor folder fresh)
+# Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Copy application files (vendor will be ignored due to .dockerignore)
+# Copy application
 COPY . .
 
-# Run any post-install scripts
+# Finish composer
 RUN composer dump-autoload --optimize
 
-# Point Apache to Laravel public folder
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
- && sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
+# Nginx configuration
+RUN echo 'server { \n\
+    listen 80; \n\
+    root /var/www/html/public; \n\
+    index index.php index.html; \n\
+    location / { \n\
+        try_files $uri $uri/ /index.php?$query_string; \n\
+    } \n\
+    location ~ \.php$ { \n\
+        fastcgi_pass 127.0.0.1:9000; \n\
+        fastcgi_index index.php; \n\
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; \n\
+        include fastcgi_params; \n\
+    } \n\
+}' > /etc/nginx/sites-available/default
 
-# Set Laravel permissions
+# Permissions
 RUN chown -R www-data:www-data /var/www/html \
  && chmod -R 755 /var/www/html/storage \
  && chmod -R 755 /var/www/html/bootstrap/cache
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+# Start both PHP-FPM and Nginx
+CMD php-fpm -D && nginx -g 'daemon off;'
