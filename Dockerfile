@@ -14,15 +14,22 @@ WORKDIR /var/www/html
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy the FULL application first (important)
+# Copy full app
 COPY . .
+
+# Create Laravel required directories BEFORE composer
+RUN mkdir -p \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    bootstrap/cache
+
+# Set permissions BEFORE artisan runs
+RUN chown -R www-data:www-data storage bootstrap/cache \
+ && chmod -R 775 storage bootstrap/cache
 
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
-
-# Permissions for Laravel
-RUN chown -R www-data:www-data /var/www/html \
- && chmod -R 775 storage bootstrap/cache
 
 # Nginx config
 COPY nginx.conf /etc/nginx/sites-available/default
