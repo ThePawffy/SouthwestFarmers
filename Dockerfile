@@ -41,4 +41,4 @@ RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-avail
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-    
+CMD ["apache2-foreground"]
