@@ -1,5 +1,10 @@
 FROM php:8.2-apache
 
+# Install mpm_event and remove others before anything else
+RUN set -eux; \
+    a2dismod mpm_prefork mpm_worker; \
+    a2enmod mpm_event rewrite
+
 # First, completely disable all MPM modules, then enable only one
 RUN a2dismod mpm_prefork mpm_worker mpm_event || true \
  && rm -f /etc/apache2/mods-enabled/mpm_*.load \
