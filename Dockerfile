@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y \
         gd \
         bcmath
 
+# 🔥 FIX: Ensure only ONE Apache MPM is enabled
+RUN a2dismod mpm_event mpm_worker \
+    && a2enmod mpm_prefork
+
 # Set working directory
 WORKDIR /var/www/html
 
@@ -41,4 +45,5 @@ RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-avail
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
+# Start Apache properly (don’t exit, don’t daemonize)
 CMD ["apache2-foreground"]
