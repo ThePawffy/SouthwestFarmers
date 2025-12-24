@@ -3,3 +3,5 @@ node_modules
 vendor
 .env
 storage/logs
+apache2/
+*.conf

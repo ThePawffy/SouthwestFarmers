@@ -1,7 +1,9 @@
 FROM php:8.2-apache
 
-# Enable required Apache modules
-RUN a2enmod rewrite
+# Enable required Apache modules and ensure only one MPM is loaded
+RUN a2enmod rewrite \
+ && a2dismod mpm_prefork mpm_worker \
+ && a2enmod mpm_event
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -12,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project
+# Copy project (but exclude Apache configs that might conflict)
 COPY . .
 
 # Install Composer
