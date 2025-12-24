@@ -28,6 +28,6 @@ RUN chown -R www-data:www-data /var/www/html \
 # Copy nginx config
 COPY nginx.conf /etc/nginx/sites-available/default
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD php-fpm -D && nginx -g 'daemon off;'
