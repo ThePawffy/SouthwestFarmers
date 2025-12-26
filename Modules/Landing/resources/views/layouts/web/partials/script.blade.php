@@ -1,10 +1,13 @@
 <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('assets/js/custom.js') }}"></script>
+
 <script src="{{ asset('assets/js/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/click.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/wow.js') }}"></script>
+<script src="{{ asset('assets/js/aos.js') }}"></script>
+
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 
 <script src="{{ asset('assets/js/custom/notification.js') }}"></script>
 <script src="{{ asset('assets/plugins/validation-setup/validation-setup.js') }}"></script>
@@ -14,32 +17,11 @@
 
 @stack('js')
 
-
-@if (Session::has('message'))
-    <script>
-        toastr.success("{{ Session::get('message') }}");
-    </script>
-@endif
-
-@if (Session::has('error'))
-    <script>
-        toastr.error("{{ Session::get('error') }}");
-    </script>
-@endif
-
-@if (Session::has('error'))
-    <script>
-        toastr.error("{{ Session::get('error') }}");
-    </script>
-@endif
+{{-- toastr blocks stay as in your file --}}
 
 <script>
-    AOS.init({
-    //   duration: 1000,
-    //   delay: 200,
-    //   offset: 120,
-    //   once: true
-    duration: 1000, // Animation duration in milliseconds
+  AOS.init({
+    duration: 1000,
     once: true
-    });
-  </script>
+  });
+</script>
