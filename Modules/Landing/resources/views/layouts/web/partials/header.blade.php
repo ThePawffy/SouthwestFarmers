@@ -1,4 +1,4 @@
-<header class="header-section home-header">
+<!-- <header class="header-section home-header">
     <nav class="navbar navbar-expand-lg p-0">
         <div class="container">
             <a href="{{ route('home') }}" class="header-logo"><img class="img-fluid nav-logo"
@@ -122,4 +122,4 @@
             </div>
             </div>
     </nav>
-</header>
+</header> -->
