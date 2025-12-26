@@ -1,21 +1,19 @@
-<script src="{{ asset('modules/landing/web/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/swiper-bundle.min.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/lity.min.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/custom.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/slick.min.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/type.js') }}"></script>
-<script src="{{ asset('modules/landing/web/js/aos.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
+<script src="{{ asset('assets/js/slick.min.js') }}"></script>
+<script src="{{ asset('assets/js/click.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/wow.js') }}"></script>
 
-<script src="{{ asset('assets/plugins/custom/notification.js') }}"></script>
+<script src="{{ asset('assets/js/custom/notification.js') }}"></script>
 <script src="{{ asset('assets/plugins/validation-setup/validation-setup.js') }}"></script>
-<script src="{{ asset('assets/js/toastr.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/jquery-confirm/jquery-confirm.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/custom/form.js') }}"></script>
+<script src="{{ asset('assets/plugins/jquery-confirm/jquery-confirm.min.js') }}"></script>
 <script src="{{ asset('assets/js/custom-ajax.js') }}"></script>
 
 @stack('js')
+
 
 @if (Session::has('message'))
     <script>
