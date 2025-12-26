@@ -450,13 +450,33 @@ $(document).on("submit", ".sign_up_form", function (e) {
                     .addClass("disabled")
                     .attr("disabled", true);
             },
+            // success: function (response) {
+            //     // Handle success response
+            //     $("#registration-modal").modal("hide");
+            //     $("#dynamicEmail").text(response.email);
+            //     $("#verifymodal").modal("show");
+            //     startCountdown(response.otp_expiration);
+            // },
             success: function (response) {
-                // Handle success response
-                $("#registration-modal").modal("hide");
-                $("#dynamicEmail").text(response.email);
-                $("#verifymodal").modal("show");
-                startCountdown(response.otp_expiration);
-            },
+    // Close registration modal if open
+    $("#registration-modal").modal("hide");
+
+    const msg = response.message || "Account created successfully.";
+
+    if (typeof toastr !== "undefined") {
+        toastr.success(msg);
+    } else if (typeof Notify === "function") {
+        Notify("success", null, msg);
+    } else {
+        alert(msg);
+    }
+
+    if (response.redirect) {
+        setTimeout(function () {
+            window.location.href = response.redirect;
+        }, 1500); // show message briefly before redirect
+    }
+},
             error: function (e) {
                 // Handle error response
                 showInputErrors(e.responseJSON);
