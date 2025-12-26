@@ -9,8 +9,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <div class="banner-content">
-                        <h1 data-aos="fade-right" class="hero-main-title">
+                    <div class="banner-content glass-card" data-aos="fade-right">
+                        <h1 class="hero-main-title">
                             {{ str_word_count($page_data['headings']['slider_title'] ?? '') > 6
                                 ? implode(' ', array_slice(explode(' ', $page_data['headings']['slider_title'] ?? ''), 0, 6)) . '...'
                                 : $page_data['headings']['slider_title'] ?? 'Welcome to Southwest Farmer Market' }}
@@ -29,7 +29,7 @@
                         </p>
 
                         <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
-                            <a class="custom-btn custom-primary-btn" href="/login">
+                            <a class="custom-btn custom-primary-btn glass-btn" href="/login">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                     <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -37,77 +37,172 @@
                                 </svg>
                                 Login
                             </a>
-                            <a class="custom-btn custom-secondary-btn" href="#plans">
-                                Explore Our Products
-                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.5 1.25C6.572 1.25 1.75 6.072 1.75 12C1.75 17.928 6.572 22.75 12.5 22.75C18.428 22.75 23.25 17.928 23.25 12C23.25 6.072 18.428 1.25 12.5 1.25ZM12.5 21.25C7.399 21.25 3.25 17.101 3.25 12C3.25 6.899 7.399 2.75 12.5 2.75C17.601 2.75 21.75 6.899 21.75 12C21.75 17.101 17.601 21.25 12.5 21.25ZM17.1919 12.2871C17.1539 12.3791 17.099 12.462 17.03 12.531L14.03 15.531C13.884 15.677 13.692 15.751 13.5 15.751C13.308 15.751 13.116 15.678 12.97 15.531C12.677 15.238 12.677 14.763 12.97 14.47L14.6899 12.75H8.5C8.086 12.75 7.75 12.414 7.75 12C7.75 11.586 8.086 11.25 8.5 11.25H14.689L12.969 9.53003C12.676 9.23703 12.676 8.76199 12.969 8.46899C13.262 8.17599 13.737 8.17599 14.03 8.46899L17.03 11.469C17.099 11.538 17.1539 11.6209 17.1919 11.7129C17.2679 11.8969 17.2679 12.1031 17.1919 12.2871Z"
-                                        fill="white" />
-                                </svg>
-                            </a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-lg-6 position-relative">
-                    <div data-aos="fade-left" class="banner-img text-center">
+                    <div data-aos="fade-left" class="banner-img text-center glass-image-wrapper">
                         <img src="{{ asset($page_data['slider_image'] ?? 'assets/images/icons/img-upload.png') }}"
                             alt="Southwest Farmer Market" class="hero-image move-image" />
                     </div>
-                    <img data-aos="fade-left" class="element1 move-image floating-element" 
-                        src="{{ asset('assets/images/icons/elements1.svg') }}" alt="" />
-                    <img data-aos="fade-left" class="element2 move-image floating-element" 
-                        src="{{ asset('assets/images/icons/elements2.svg') }}" alt="" />
+                    <div class="floating-element element1 glass-orb" data-aos="fade-left"></div>
+                    <div class="floating-element element2 glass-orb" data-aos="fade-left" data-aos-delay="200"></div>
+                    <div class="floating-element element3 glass-orb" data-aos="fade-left" data-aos-delay="400"></div>
                 </div>
             </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
     </section>
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         .home-banner-section {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 40px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8f5e9 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .home-banner-section::before {
+        /* Animated Background Shapes */
+        .bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float-shape 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.8) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(240, 147, 251, 0.8) 0%, transparent 70%);
+            bottom: -10%;
+            right: -10%;
+            animation-delay: 7s;
+        }
+
+        .shape-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(118, 75, 162, 0.8) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float-shape {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -50px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 30px) scale(0.9);
+            }
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 50%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+            border-radius: 30px;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
             pointer-events: none;
         }
 
         .hero-main-title {
             font-size: 3.5rem;
-            font-weight: 800;
+            font-weight: 900;
             line-height: 1.2;
-            color: #1a1a1a;
+            color: #ffffff;
             margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         .typing-text {
             display: block;
-            color: #4CAF50;
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 3rem;
             margin-top: 0.5rem;
+            font-weight: 900;
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% {
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                filter: hue-rotate(20deg);
+            }
         }
 
         .hero-description {
             font-size: 1.125rem;
             line-height: 1.8;
-            color: #555;
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 2rem;
             max-width: 600px;
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
         }
 
         .cta-buttons-wrapper {
@@ -116,66 +211,115 @@
             flex-wrap: wrap;
         }
 
-        .custom-btn {
+        /* Glassmorphism Button */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 16px 32px;
+            gap: 0.75rem;
+            padding: 18px 40px;
             font-size: 1.125rem;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 50px;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            position: relative;
+            overflow: hidden;
         }
 
-        .custom-primary-btn {
-            background: white;
-            color: #4CAF50;
-            border: 2px solid #4CAF50;
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
         }
 
-        .custom-primary-btn:hover {
-            background: #4CAF50;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        .glass-btn:hover::before {
+            left: 100%;
         }
 
-        .custom-secondary-btn {
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            color: white;
-            border: none;
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px 0 rgba(31, 38, 135, 0.5);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
-        .custom-secondary-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        .glass-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .glass-btn:hover svg {
+            transform: translateX(5px);
+        }
+
+        /* Glass Image Wrapper */
+        .glass-image-wrapper {
+            position: relative;
+            z-index: 1;
         }
 
         .hero-image {
-            max-width: 85%;
+            max-width: 90%;
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-radius: 30px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
         }
 
-        .floating-element {
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* Glass Orbs */
+        .glass-orb {
             position: absolute;
-            animation: float 6s ease-in-out infinite;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
 
         .element1 {
             top: 10%;
-            right: 10%;
-            width: 80px;
+            right: 15%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
         }
 
         .element2 {
-            bottom: 15%;
+            bottom: 20%;
             right: 5%;
-            width: 60px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             animation-delay: 1s;
+        }
+
+        .element3 {
+            top: 50%;
+            right: 25%;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation-delay: 2s;
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -183,7 +327,7 @@
                 transform: translateY(0px);
             }
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
         }
 
@@ -196,7 +340,7 @@
                 transform: translateY(0) scale(1);
             }
             50% {
-                transform: translateY(-15px) scale(1.02);
+                transform: translateY(-20px) scale(1.03);
             }
         }
 
@@ -208,11 +352,21 @@
             .typing-text {
                 font-size: 2rem;
             }
+
+            .glass-card {
+                padding: 40px 30px;
+            }
         }
 
         @media (max-width: 768px) {
             .home-banner-section {
+                min-height: auto;
                 padding: 60px 0;
+            }
+
+            .glass-card {
+                padding: 30px 20px;
+                margin-bottom: 30px;
             }
 
             .hero-main-title {
@@ -231,9 +385,18 @@
                 flex-direction: column;
             }
 
-            .custom-btn {
+            .glass-btn {
                 width: 100%;
                 justify-content: center;
+            }
+
+            .glass-orb {
+                display: none;
+            }
+
+            .shape {
+                width: 250px !important;
+                height: 250px !important;
             }
         }
     </style>
