@@ -135,21 +135,21 @@ class RegisteredUserController extends Controller
                 ], 422);
             }
 
-           if (env('QUEUE_MAIL')) {
-    Mail::to($request->email)->queue(
-        new RegistrationMail([
-            'code' => $otp,
-            'name' => $request->companyName,
-        ])
-    );
-} else {
-    Mail::to($request->email)->send(
-        new RegistrationMail([
-            'code' => $otp,
-            'name' => $request->companyName,
-        ])
-    );
-}
+//            if (env('QUEUE_MAIL')) {
+//     Mail::to($request->email)->queue(
+//         new RegistrationMail([
+//             'code' => $otp,
+//             'name' => $request->companyName,
+//         ])
+//     );
+// } else {
+//     Mail::to($request->email)->send(
+//         new RegistrationMail([
+//             'code' => $otp,
+//             'name' => $request->companyName,
+//         ])
+//     );
+// }
 
             Log::info('REGISTER: OTP mail sent');
 
@@ -201,21 +201,21 @@ class RegisteredUserController extends Controller
             'email_verified_at' => $expire,
         ]);
 
-        if (env('QUEUE_MAIL')) {
-    Mail::to($request->email)->queue(
-        new RegistrationMail([
-            'code' => $otp,
-            'name' => $request->companyName,
-        ])
-    );
-} else {
-    Mail::to($request->email)->send(
-        new RegistrationMail([
-            'code' => $otp,
-            'name' => $request->companyName,
-        ])
-    );
-}
+//         if (env('QUEUE_MAIL')) {
+//     Mail::to($request->email)->queue(
+//         new RegistrationMail([
+//             'code' => $otp,
+//             'name' => $request->companyName,
+//         ])
+//     );
+// } else {
+//     Mail::to($request->email)->send(
+//         new RegistrationMail([
+//             'code' => $otp,
+//             'name' => $request->companyName,
+//         ])
+//     );
+// }
 
         Log::info('OTP RESEND: OTP sent', [
             'email' => $request->email,
