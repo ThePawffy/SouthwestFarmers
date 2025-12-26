@@ -27,7 +27,7 @@
                         <p data-aos="fade-right" data-aos-delay="300" class="hero-description">
                             Welcome to the #1 African Grocery Chain Store in the States! We are pleased to offer our customers the convenience of both delivery and pickup options. Our delivery service is fast, reliable, and available for customers throughout the United States. If you prefer to pick up your order, we have convenient pickup locations available for you.
                         </p>
- <div class="get-btn-container">
+ <!-- <div class="get-btn-container">
                     <a
                         href="{{ $headerBtnLink && Route::has($headerBtnLink) ? route($headerBtnLink) : route('login') }}"
                         class="get-app-btn"
@@ -44,7 +44,7 @@
 
                         {{ $headerBtnText ? Str::words($headerBtnText, 4, '...') : __('Login') }}
                     </a>
-                </div>
+                </div> -->
                         <!-- <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
                             <a class="custom-btn custom-secondary-btn" href="#plans">
                                 Explore Our Products
