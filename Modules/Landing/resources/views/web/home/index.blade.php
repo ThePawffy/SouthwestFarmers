@@ -28,7 +28,15 @@
                             Welcome to the #1 African Grocery Chain Store in the States! We are pleased to offer our customers the convenience of both delivery and pickup options. Our delivery service is fast, reliable, and available for customers throughout the United States. If you prefer to pick up your order, we have convenient pickup locations available for you.
                         </p>
 
-                        <!-- <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
+                        <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
+                            <a class="custom-btn custom-primary-btn" href="/login">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M15 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Login
+                            </a>
                             <a class="custom-btn custom-secondary-btn" href="#plans">
                                 Explore Our Products
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
@@ -38,7 +46,7 @@
                                         fill="white" />
                                 </svg>
                             </a>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
                 
@@ -53,44 +61,6 @@
                         src="{{ asset('assets/images/icons/elements2.svg') }}" alt="" />
                 </div>
             </div>
-
-            {{-- Stats Section --}}
-            <!-- <div class="stat-container" data-aos="fade-up" data-aos-delay="900">
-                <div class="stat-content">
-                    @foreach ($page_data['headings']['content_type_short_texts'] ?? ['1000+', '500+', '50+', '24/7'] as $key => $content_type_short_texts)
-                        <div data-aos="fade-up" data-aos-delay="{{ ($key + 3) * 200 }}" class="stat-item">
-                            <div class="stat-icon-wrapper">
-                                <img src="{{ asset($page_data['content_type_icons'][$key] ?? 'assets/img/demo-img.png') }}"
-                                    alt="icon" class="stat-icon">
-                            </div>
-                            <div class="stat-details">
-                                @if (strpos($content_type_short_texts, '/') !== false)
-                                    @php
-                                        $numbers = explode('/', $content_type_short_texts);
-                                    @endphp
-                                    <h2 class="stat-number">
-                                        <span class="counter" data-target="{{ $numbers[0] }}">0</span> /
-                                        <span class="counter" data-target="{{ $numbers[1] }}">0</span>
-                                    </h2>
-                                @elseif (strpos($content_type_short_texts, '+') !== false)
-                                    @php
-                                        $number = preg_replace('/[^0-9.]/', '', $content_type_short_texts);
-                                    @endphp
-                                    <h2 class="stat-number">
-                                        <span class="counter" data-target="{{ $number }}">0</span>+
-                                    </h2>
-                                @else
-                                    <h2 class="stat-number counter"
-                                        data-target="{{ preg_replace('/[^0-9.]/', '', $content_type_short_texts) }}">0</h2>
-                                @endif
-                                <p class="stat-label">
-                                    {{ Str::words($page_data['headings']['content_type_titles'][$key] ?? 'Label', 3, '...') }}
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -156,6 +126,19 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
+        .custom-primary-btn {
+            background: white;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+
+        .custom-primary-btn:hover {
+            background: #4CAF50;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+        }
+
         .custom-secondary-btn {
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
@@ -214,68 +197,6 @@
             }
         }
 
-        .stat-container {
-            margin-top: 60px;
-            padding: 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .stat-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-icon-wrapper {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-            border-radius: 50%;
-            padding: 12px;
-        }
-
-        .stat-icon {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin: 0;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: #666;
-            margin: 0.5rem 0 0 0;
-            font-weight: 500;
-        }
-
         @media (max-width: 992px) {
             .hero-main-title {
                 font-size: 2.5rem;
@@ -283,11 +204,6 @@
 
             .typing-text {
                 font-size: 2rem;
-            }
-
-            .stat-content {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
             }
         }
 
@@ -308,12 +224,13 @@
                 font-size: 1rem;
             }
 
-            .stat-container {
-                padding: 20px;
+            .cta-buttons-wrapper {
+                flex-direction: column;
             }
 
-            .stat-content {
-                grid-template-columns: 1fr;
+            .custom-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
