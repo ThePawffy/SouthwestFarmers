@@ -27,7 +27,24 @@
                         <p data-aos="fade-right" data-aos-delay="300" class="hero-description">
                             Welcome to the #1 African Grocery Chain Store in the States! We are pleased to offer our customers the convenience of both delivery and pickup options. Our delivery service is fast, reliable, and available for customers throughout the United States. If you prefer to pick up your order, we have convenient pickup locations available for you.
                         </p>
+ <div class="get-btn-container">
+                    <a
+                        href="{{ $headerBtnLink && Route::has($headerBtnLink) ? route($headerBtnLink) : route('login') }}"
+                        class="get-app-btn"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.48131 12.9012C4.30234 13.6032 1.21114 15.0366 3.09389 16.8304C4.01359 17.7065 5.03791 18.3332 6.32573 18.3332H13.6743C14.9621 18.3332 15.9864 17.7065 16.9061 16.8304C18.7888 15.0366 15.6977 13.6032 14.5187 12.9012C11.754 11.2549 8.24599 11.2549 5.48131 12.9012Z"
+                                fill="white"></path>
+                            <path
+                                d="M13.75 5.4165C13.75 7.48757 12.0711 9.1665 10 9.1665C7.92893 9.1665 6.25 7.48757 6.25 5.4165C6.25 3.34544 7.92893 1.6665 10 1.6665C12.0711 1.6665 13.75 3.34544 13.75 5.4165Z"
+                                fill="white"></path>
+                        </svg>
 
+                        {{ $headerBtnText ? Str::words($headerBtnText, 4, '...') : __('Login') }}
+                    </a>
+                </div>
                         <!-- <div data-aos="fade-right" data-aos-delay="600" class="cta-buttons-wrapper mt-4">
                             <a class="custom-btn custom-secondary-btn" href="#plans">
                                 Explore Our Products
