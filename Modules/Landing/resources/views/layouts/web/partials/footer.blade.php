@@ -1,4 +1,4 @@
-{{-- Enhanced Footer Section --}}
+<!-- {{-- Enhanced Footer Section --}}
 <footer class="footer-section">
     <div class="footer-wave-bg">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
@@ -595,4 +595,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-</script>
+</script> -->
