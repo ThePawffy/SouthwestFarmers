@@ -76,7 +76,7 @@
 </div>
 
 <!--Verify Modal Start -->
-<div class="modal fade common-validation-modal" id="verifymodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<!-- <div class="modal fade common-validation-modal" id="verifymodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content verify-content">
@@ -116,11 +116,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--Verify Modal end -->
 
 <!-- success Modal Start -->
-<div class="modal fade common-validation-modal" id="successmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<!-- <div class="modal fade common-validation-modal" id="successmodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content success-content">
@@ -135,6 +135,6 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--success Modal end -->
 
