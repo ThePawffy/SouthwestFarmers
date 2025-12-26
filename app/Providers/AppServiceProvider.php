@@ -23,9 +23,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        // Force HTTPS only outside local (Railway = production)
-        // if (config('app.env') !== 'local') {
-        //     URL::forceScheme('https');
-        // }
+        // Force HTTPS only in production (Railway)
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
