@@ -266,20 +266,23 @@ public function store(Request $request)
         ]);
 
     } catch (\Throwable $e) {
-        DB::rollBack();
+    DB::rollBack();
 
-        Log::error('REGISTER: Exception', [
-            'message' => $e->getMessage(),
-            'line' => $e->getLine(),
-            'file' => $e->getFile(),
-        ]);
+    Log::error('REGISTER: Exception', [
+        'message' => $e->getMessage(),
+        'line' => $e->getLine(),
+        'file' => $e->getFile(),
+    ]);
 
-        return response()->json([
-            'errors' => [
-                'general' => ['Something went wrong. Please contact admin.']
-            ]
-        ], 422);
-    }
+    return response()->json([
+        'errors' => [
+            'general' => [
+                'Something went wrong. Please contact admin.',
+                'Error: '.$e->getMessage().' ('.$e->getFile().':'.$e->getLine().')',
+            ],
+        ],
+    ], 422);
+}
 }
     /**
      * Resend OTP
