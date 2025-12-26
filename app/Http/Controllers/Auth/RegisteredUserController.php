@@ -263,6 +263,7 @@ public function store(Request $request)
         return response()->json([
             'message' => 'Account created successfully. Please login to continue.',
             'redirect' => route('login'),   // change to your dashboard/home route
+            'openModal' => false,
         ]);
 
     } catch (\Throwable $e) {
