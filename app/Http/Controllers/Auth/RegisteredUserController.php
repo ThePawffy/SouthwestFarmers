@@ -261,8 +261,8 @@ public function store(Request $request)
         DB::commit();
 
         return response()->json([
-            'message' => 'Account created successfully.',
-            'redirect' => route('dashboard'),   // change to your dashboard/home route
+            'message' => 'Account created successfully, Please Login',
+            'redirect' => route('login'),   // change to your dashboard/home route
         ]);
 
     } catch (\Throwable $e) {
