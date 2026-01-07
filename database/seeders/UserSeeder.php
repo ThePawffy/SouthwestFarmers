@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -12,10 +13,36 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = array(
-            array('business_id' => 1,'email' => 'shopowner@acnoo.com','name' => 'Acnoo Team','role' => 'shop-owner','phone' => '+8801712022529','image' => NULL,'lang' => 'en','visibility' => NULL,'status' => NULL,'password' => bcrypt('123456'),'email_verified_at' => NULL,'remember_token' => NULL,'created_at' => now(),'updated_at' => now()),
-        );
+        // 1. Super Admin
+        User::create([
+            'name'     => 'Super Admin',
+            'email'    => 'superadmin@acnoo.com',
+            'password' => Hash::make('superadmin'), // Password encrypt ho raha hai
+            // 'role_id' => 1, // Note: Agar aapke database me 'role_id' column hai, toh uncomment karein
+        ]);
 
-        User::insert($users);
+        // 2. Admin
+        User::create([
+            'name'     => 'Admin',
+            'email'    => 'admin@acnoo.com',
+            'password' => Hash::make('admin'),
+            // 'role_id' => 2,
+        ]);
+
+        // 3. Manager
+        User::create([
+            'name'     => 'Manager',
+            'email'    => 'manager@acnoo.com',
+            'password' => Hash::make('manager'),
+            // 'role_id' => 3,
+        ]);
+        
+        // 4. User (Normal)
+        User::create([
+            'name'     => 'User',
+            'email'    => 'user@acnoo.com',
+            'password' => Hash::make('user'), // Iska password aapne nahi diya tha, toh 'user' rakh diya
+            // 'role_id' => 4,
+        ]);
     }
 }
