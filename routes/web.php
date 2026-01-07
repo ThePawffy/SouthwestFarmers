@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
+Route::get('/db-seed', function () {
+    Artisan::call('db:seed');
+    return 'Database seeded successfully';
+});
 Route::get('/payments-gateways/{plan_id}/{business_id}', [Web\PaymentController::class, 'index'])->name('payments-gateways.index');
 Route::post('/payments/{plan_id}/{gateway_id}', [Web\PaymentController::class, 'payment'])->name('payments-gateways.payment');
 Route::get('/payment/success', [Web\PaymentController::class, 'success'])->name('payment.success');
